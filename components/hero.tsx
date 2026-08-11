@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
-import Image from 'next/image'
 
 export function Hero({ active }: { active: boolean }) {
   const ref = useRef<HTMLElement>(null)
@@ -29,24 +28,50 @@ export function Hero({ active }: { active: boolean }) {
       ref={ref}
       className="texture-concrete relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden px-4 pb-6 pt-20 md:px-6"
     >
-      {/* central abstract object */}
+      {/* central abstract gradient */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 1.1 }}
-        animate={show ? { opacity: 0.85, scale: 1 } : {}}
+        animate={show ? { opacity: 0.6, scale: 1 } : {}}
         transition={{ duration: 1.1, ease: 'easeOut' }}
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[75vmin] w-[75vmin] -translate-x-1/2 -translate-y-1/2"
         style={{
           transform: `translate(-50%, -50%) translate(${parallax.x * 18}px, ${parallax.y * 18}px)`,
         }}
       >
-        <Image
-          src="/hero-object.png"
-          alt="Escultura metálica abstrata em movimento"
-          fill
-          priority
-          sizes="70vmin"
-          className="object-contain"
+        {/* red / blue chromatic blobs */}
+        <div
+          className="absolute inset-0 rounded-full blur-[60px] mix-blend-screen"
+          style={{
+            background:
+              'radial-gradient(circle at 38% 42%, var(--rgb-red) 0%, transparent 55%)',
+            transform: `translate(${parallax.x * -14}px, ${parallax.y * -14}px)`,
+          }}
+        />
+        <div
+          className="absolute inset-0 rounded-full blur-[60px] mix-blend-screen"
+          style={{
+            background:
+              'radial-gradient(circle at 62% 58%, var(--rgb-blue) 0%, transparent 55%)',
+            transform: `translate(${parallax.x * 14}px, ${parallax.y * 14}px)`,
+          }}
+        />
+        {/* green core */}
+        <div
+          className="absolute inset-0 rounded-full blur-[70px] mix-blend-screen"
+          style={{
+            background:
+              'radial-gradient(circle at 50% 50%, var(--rgb-green) 0%, transparent 42%)',
+            opacity: 0.55,
+          }}
+        />
+        {/* dark conic sheen for a metallic/3d feel */}
+        <div
+          className="absolute inset-[14%] rounded-full opacity-70 blur-[24px]"
+          style={{
+            background:
+              'conic-gradient(from 140deg, oklch(0.28 0 0), oklch(0.05 0 0), oklch(0.32 0 0), oklch(0.05 0 0), oklch(0.28 0 0))',
+          }}
         />
       </motion.div>
 
