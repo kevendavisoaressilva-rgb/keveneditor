@@ -50,11 +50,65 @@ export function Hero({ active }: { active: boolean }) {
         />
       </motion.div>
 
+      {/* second floating 3D object w/ chromatic aberration */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={show ? { opacity: 0.9 } : {}}
+        transition={{ duration: 1.2, delay: 0.4 }}
+        className="pointer-events-none absolute right-[6%] top-[22%] z-10 hidden h-[26vmin] w-[26vmin] md:block"
+        style={{
+          transform: `translate(${parallax.x * -34}px, ${parallax.y * -34}px)`,
+        }}
+      >
+        <div className="chromatic-3d relative h-full w-full">
+          <Image
+            src="/object-3d-2.png"
+            alt=""
+            fill
+            sizes="26vmin"
+            className="object-contain mix-blend-screen"
+          />
+        </div>
+      </motion.div>
+
+      {/* spray graffiti mark */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={show ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.7 }}
+        className="pointer-events-none absolute bottom-[12%] left-[-4%] z-10 h-[34vmin] w-[46vmin] -rotate-6"
+      >
+        <Image
+          src="/spray-mark.png"
+          alt=""
+          fill
+          sizes="46vmin"
+          className="spray-asset object-contain"
+        />
+      </motion.div>
+
+      {/* graffiti tag sticker */}
+      <motion.span
+        initial={{ opacity: 0, rotate: -12 }}
+        animate={show ? { opacity: 1, rotate: -8 } : {}}
+        transition={{ delay: 0.9, duration: 0.4 }}
+        className="sticker absolute right-[8%] top-[62%] z-20 hidden bg-rgb-red px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-background md:block"
+      >
+        REEL &apos;26
+      </motion.span>
+
       {/* faux technical markings */}
       <div className="pointer-events-none absolute inset-0 z-10 font-mono text-[10px] uppercase tracking-widest text-concrete">
-        <span className="absolute left-4 top-24 md:left-6">LAT -5.0938 / LON -42.8367</span>
+        <span className="absolute left-4 top-24 md:left-6">
+          <span className="text-rgb-green">LAT</span> -5.0938 /{' '}
+          <span className="text-rgb-blue">LON</span> -42.8367
+        </span>
         <span className="absolute right-4 top-24 md:right-6">FILE / KEVEN_REEL_2026.aep</span>
-        <span className="absolute bottom-24 left-4 md:left-6">FPS 24 — RES 3840×2160</span>
+        <span className="absolute bottom-24 left-4 md:left-6">
+          <span className="text-rgb-red">FPS 24</span> — RES 3840×2160
+        </span>
         <span className="absolute bottom-24 right-4 rotate-90 origin-bottom-right md:right-6">
           AFTER EFFECTS · ELEMENT 3D
         </span>
@@ -72,7 +126,7 @@ export function Hero({ active }: { active: boolean }) {
         className="relative z-20 flex items-start justify-between"
         style={{ transform: `translateX(${parallax.x * -10}px)` }}
       >
-        <span className="font-display text-[13vw] leading-[0.8] text-foreground md:text-[9vw]">
+        <span className="spray-green font-display text-[13vw] leading-[0.8] md:text-[9vw]">
           MOTION
         </span>
         <span className="mt-2 hidden font-mono text-xs uppercase tracking-widest text-concrete md:block">
@@ -111,7 +165,7 @@ export function Hero({ active }: { active: boolean }) {
           <br />
           BASEADO EM TIMON — MARANHÃO, BRASIL
         </div>
-        <span className="font-display text-[13vw] leading-[0.8] text-foreground md:text-[9vw]">
+        <span className="spray-blue font-display text-[13vw] leading-[0.8] md:text-[9vw]">
           DESIGN
         </span>
       </motion.div>

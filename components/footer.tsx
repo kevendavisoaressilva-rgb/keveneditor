@@ -1,8 +1,24 @@
+import Image from 'next/image'
+
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border px-4 pb-8 pt-16 md:px-6">
+      {/* spray mark */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[2%] top-[10%] z-0 h-[26vmin] w-[38vmin] rotate-3"
+      >
+        <Image
+          src="/spray-mark.png"
+          alt=""
+          fill
+          sizes="38vmin"
+          className="spray-asset object-contain"
+        />
+      </div>
+
       {/* giant cropped brand */}
-      <div className="pointer-events-none select-none overflow-hidden">
+      <div className="relative z-10 pointer-events-none select-none overflow-hidden">
         <span
           className="glitch rgb-split-lg block font-display text-[28vw] leading-[0.7] text-foreground"
           data-text="KEVEN"
@@ -11,9 +27,9 @@ export function Footer() {
         </span>
       </div>
 
-      <div className="mt-6 flex flex-wrap items-end justify-between gap-6 border-t border-border pt-6">
+      <div className="relative z-10 mt-6 flex flex-wrap items-end justify-between gap-6 border-t border-border pt-6">
         <div className="font-mono text-[11px] uppercase leading-relaxed tracking-widest text-concrete">
-          MOTION DESIGNER
+          <span className="spray-red">MOTION DESIGNER</span>
           <br />
           <span className="text-foreground">TIMON — MARANHÃO, BRASIL</span>
           <br />© 2026 — TODOS OS DIREITOS RESERVADOS

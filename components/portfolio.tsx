@@ -19,7 +19,8 @@ export function Portfolio({ projects }: { projects: Project[] }) {
       {/* section header */}
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-4 md:mb-16">
         <h2 className="font-display text-6xl leading-none text-foreground md:text-8xl">
-          SELECTED<span className="text-rgb-red">/</span>WORK
+          SELECTED<span className="spray-red">/</span>
+          <span className="spray-red">WORK</span>
         </h2>
         <span className="font-mono text-[11px] uppercase tracking-widest text-concrete">
           [ {projects.length.toString().padStart(2, '0')} PROJETOS ] — CLIQUE PARA ASSISTIR

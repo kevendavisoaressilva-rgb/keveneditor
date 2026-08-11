@@ -3,11 +3,11 @@
 import { motion } from 'motion/react'
 
 const SERVICES = [
-  { n: 'A', t: 'MOTION DESIGN', accent: 'text-rgb-red' },
+  { n: 'A', t: 'MOTION DESIGN', accent: 'spray-red' },
   { n: 'B', t: 'ANIMATION', accent: 'text-foreground' },
-  { n: 'C', t: '3D MOTION', accent: 'text-rgb-blue' },
-  { n: 'D', t: '2D MOTION', accent: 'text-rgb-green' },
-  { n: 'E', t: 'VISUAL IDENTITY', accent: 'text-foreground' },
+  { n: 'C', t: '3D MOTION', accent: 'spray-blue' },
+  { n: 'D', t: '2D MOTION', accent: 'spray-green' },
+  { n: 'E', t: 'VISUAL IDENTITY', accent: 'outline-graffiti' },
 ]
 
 export function Services() {
@@ -15,7 +15,7 @@ export function Services() {
     <section id="services" className="relative px-4 py-20 md:px-6 md:py-28">
       <div className="mb-8 flex items-end justify-between border-b border-border pb-4">
         <h2 className="font-display text-6xl leading-none text-foreground md:text-8xl">
-          WHAT I DO
+          WHAT I <span className="spray-green">DO</span>
         </h2>
         <span className="hidden font-mono text-[11px] uppercase tracking-widest text-concrete md:block">
           / SERVIÇOS

@@ -3,10 +3,10 @@
 import { motion } from 'motion/react'
 
 const STEPS = [
-  { k: 'IDEA', d: 'briefing · referências · conceito', c: 'text-rgb-red' },
+  { k: 'IDEA', d: 'briefing · referências · conceito', c: 'spray-red' },
   { k: 'DESIGN', d: 'frames · estilo · direção de arte', c: 'text-foreground' },
-  { k: 'ANIMATION', d: 'keyframes · 3d · timing', c: 'text-rgb-blue' },
-  { k: 'FINAL', d: 'render · grade · entrega', c: 'text-rgb-green' },
+  { k: 'ANIMATION', d: 'keyframes · 3d · timing', c: 'spray-blue' },
+  { k: 'FINAL', d: 'render · grade · entrega', c: 'spray-green' },
 ]
 
 export function Process() {
@@ -14,7 +14,7 @@ export function Process() {
     <section className="relative px-4 py-20 md:px-6 md:py-28">
       <div className="mb-10 flex items-end justify-between border-b border-border pb-4">
         <h2 className="font-display text-6xl leading-none text-foreground md:text-8xl">
-          PROCESS
+          PRO<span className="spray-blue">CESS</span>
         </h2>
         <span className="hidden font-mono text-[11px] uppercase tracking-widest text-concrete md:block">
           / STORYBOARD
