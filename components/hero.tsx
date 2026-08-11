@@ -50,55 +50,6 @@ export function Hero({ active }: { active: boolean }) {
         />
       </motion.div>
 
-      {/* second floating 3D object w/ chromatic aberration */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={show ? { opacity: 0.9 } : {}}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="pointer-events-none absolute right-[6%] top-[22%] z-10 hidden h-[26vmin] w-[26vmin] md:block"
-        style={{
-          transform: `translate(${parallax.x * -34}px, ${parallax.y * -34}px)`,
-        }}
-      >
-        <div className="chromatic-3d relative h-full w-full">
-          <Image
-            src="/object-3d-2.png"
-            alt=""
-            fill
-            sizes="26vmin"
-            className="object-contain mix-blend-screen"
-          />
-        </div>
-      </motion.div>
-
-      {/* spray graffiti mark */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={show ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="pointer-events-none absolute bottom-[12%] left-[-4%] z-10 h-[34vmin] w-[46vmin] -rotate-6"
-      >
-        <Image
-          src="/spray-mark.png"
-          alt=""
-          fill
-          sizes="46vmin"
-          className="spray-asset object-contain"
-        />
-      </motion.div>
-
-      {/* graffiti tag sticker */}
-      <motion.span
-        initial={{ opacity: 0, rotate: -12 }}
-        animate={show ? { opacity: 1, rotate: -8 } : {}}
-        transition={{ delay: 0.9, duration: 0.4 }}
-        className="sticker absolute right-[8%] top-[62%] z-20 hidden bg-rgb-red px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-background md:block"
-      >
-        REEL &apos;26
-      </motion.span>
-
       {/* faux technical markings */}
       <div className="pointer-events-none absolute inset-0 z-10 font-mono text-[10px] uppercase tracking-widest text-concrete">
         <span className="absolute left-4 top-24 md:left-6">

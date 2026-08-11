@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'motion/react'
-import Image from 'next/image'
 
 const FLOATERS = [
   { t: 'MOTION', c: 'spray-red', s: 'top-[8%] left-[6%] -rotate-6', o: 'opacity-40' },
@@ -30,36 +29,6 @@ export function About() {
             {f.t}
           </span>
         ))}
-      </div>
-
-      {/* floating 3D object w/ chromatic aberration */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[4%] top-[30%] z-0 hidden h-[30vmin] w-[30vmin] md:block"
-      >
-        <div className="chromatic-3d relative h-full w-full opacity-80">
-          <Image
-            src="/object-3d-2.png"
-            alt=""
-            fill
-            sizes="30vmin"
-            className="object-contain mix-blend-screen"
-          />
-        </div>
-      </div>
-
-      {/* spray mark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-[6%] right-[-6%] z-0 h-[30vmin] w-[42vmin] rotate-6"
-      >
-        <Image
-          src="/spray-mark.png"
-          alt=""
-          fill
-          sizes="42vmin"
-          className="spray-asset object-contain"
-        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">

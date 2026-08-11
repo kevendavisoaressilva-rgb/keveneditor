@@ -1,22 +1,6 @@
-import Image from 'next/image'
-
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border px-4 pb-8 pt-16 md:px-6">
-      {/* spray mark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[2%] top-[10%] z-0 h-[26vmin] w-[38vmin] rotate-3"
-      >
-        <Image
-          src="/spray-mark.png"
-          alt=""
-          fill
-          sizes="38vmin"
-          className="spray-asset object-contain"
-        />
-      </div>
-
       {/* giant cropped brand */}
       <div className="relative z-10 pointer-events-none select-none overflow-hidden">
         <span

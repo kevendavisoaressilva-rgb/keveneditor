@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'motion/react'
-import Image from 'next/image'
 
 export function Contact() {
   return (
@@ -9,36 +8,6 @@ export function Contact() {
       id="contact"
       className="texture-concrete relative overflow-hidden px-4 py-24 md:px-6 md:py-40"
     >
-      {/* floating 3D object w/ chromatic aberration */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[3%] top-[8%] z-0 hidden h-[32vmin] w-[32vmin] md:block"
-      >
-        <div className="chromatic-3d relative h-full w-full opacity-80">
-          <Image
-            src="/object-3d-2.png"
-            alt=""
-            fill
-            sizes="32vmin"
-            className="object-contain mix-blend-screen"
-          />
-        </div>
-      </div>
-
-      {/* spray mark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-[4%] left-[-6%] z-0 h-[32vmin] w-[46vmin] -rotate-3"
-      >
-        <Image
-          src="/spray-mark.png"
-          alt=""
-          fill
-          sizes="46vmin"
-          className="spray-asset object-contain"
-        />
-      </div>
-
       <p className="relative z-10 mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-concrete">
         / CONTATO — FIM DA TRANSMISSÃO
       </p>
