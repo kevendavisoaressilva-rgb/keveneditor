@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import type { Project } from '@/lib/projects'
 import { IntroLoader } from './intro-loader'
-import { CustomCursor } from './custom-cursor'
 import { Nav } from './nav'
 import { Hero } from './hero'
 import { Portfolio } from './portfolio'
@@ -21,7 +20,6 @@ export function Experience({ projects }: { projects: Project[] }) {
   return (
     <>
       <IntroLoader onDone={() => setIntroDone(true)} />
-      <CustomCursor />
 
       {/* global texture overlays */}
       <div className="grain-overlay" aria-hidden />

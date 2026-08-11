@@ -47,16 +47,6 @@
     background: var(--rgb-red);
     color: var(--foreground);
   }
-  /* hide native cursor on pointer-fine devices; custom cursor takes over */
-  @media (pointer: fine) {
-    body {
-      cursor: none;
-    }
-    a,
-    button {
-      cursor: none;
-    }
-  }
 }
 
 /* ---------- Display typography ---------- */
