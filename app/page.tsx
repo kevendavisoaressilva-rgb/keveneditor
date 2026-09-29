@@ -1,7 +1,7 @@
-import { getProjectsWithThumbnails } from '@/lib/projects'
+import { getWorksWithThumbnails } from '@/lib/projects'
 import { Experience } from '@/components/experience'
 
 export default async function Page() {
-  const projects = await getProjectsWithThumbnails()
-  return <Experience projects={projects} />
+  const works = await getWorksWithThumbnails()
+  return <Experience works={works} />
 }

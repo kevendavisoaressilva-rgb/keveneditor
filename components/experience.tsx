@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { Project } from '@/lib/projects'
+import type { Work } from '@/lib/projects'
 import { IntroLoader } from './intro-loader'
 import { Nav } from './nav'
 import { Hero } from './hero'
@@ -14,7 +14,7 @@ import { Contact } from './contact'
 import { Footer } from './footer'
 import { Marquee } from './marquee'
 
-export function Experience({ projects }: { projects: Project[] }) {
+export function Experience({ works }: { works: Work[] }) {
   const [introDone, setIntroDone] = useState(false)
 
   return (
@@ -30,13 +30,21 @@ export function Experience({ projects }: { projects: Project[] }) {
       <main className="relative">
         <Hero active={introDone} />
         <Marquee
-          items={['MOTION DESIGN', 'AFTER EFFECTS', 'ELEMENT 3D', '3D', '2D', 'TIMON — MA', '2026']}
+          items={[
+            'MOTION DESIGN',
+            'EDIÇÃO DE VÍDEO',
+            'FOTOGRAFIA',
+            '2D',
+            '3D',
+            'TIMON — MA',
+            '2026',
+          ]}
           accent="red"
         />
-        <Portfolio projects={projects} />
+        <Portfolio works={works} />
         <About />
         <Marquee
-          items={['MOVEMENT', 'FRAME', 'TIME', 'SPACE', 'LOOP', 'RENDER', 'KEYFRAME']}
+          items={['MOVEMENT', 'CUT', 'FRAME', 'TIME', 'LIGHT', 'RENDER', 'SHUTTER']}
           accent="blue"
           reverse
         />

@@ -1,11 +1,32 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
+function useLocalTime() {
+  const [time, setTime] = useState('')
+  useEffect(() => {
+    const tick = () => {
+      setTime(
+        new Date().toLocaleTimeString('pt-BR', {
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZone: 'America/Fortaleza',
+        }),
+      )
+    }
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
+  }, [])
+  return time
+}
+
 export function Hero({ active }: { active: boolean }) {
-  const ref = useRef<HTMLElement>(null)
   const [parallax, setParallax] = useState({ x: 0, y: 0 })
+  const time = useLocalTime()
 
   useEffect(() => {
     const fine =
@@ -25,47 +46,45 @@ export function Hero({ active }: { active: boolean }) {
   return (
     <section
       id="top"
-      ref={ref}
-      className="texture-concrete relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden px-4 pb-6 pt-20 md:px-6"
+      className="texture-concrete relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden px-5 pb-6 pt-20 md:px-8"
     >
       {/* central abstract gradient */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 1.1 }}
-        animate={show ? { opacity: 0.6, scale: 1 } : {}}
+        animate={show ? { opacity: 0.55, scale: 1 } : {}}
         transition={{ duration: 1.1, ease: 'easeOut' }}
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[75vmin] w-[75vmin] -translate-x-1/2 -translate-y-1/2"
-        style={{
-          transform: `translate(-50%, -50%) translate(${parallax.x * 18}px, ${parallax.y * 18}px)`,
-        }}
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[72vmin] w-[72vmin] -translate-x-1/2 -translate-y-1/2"
       >
-        {/* red / blue chromatic blobs */}
         <div
-          className="absolute inset-0 rounded-full blur-[60px] mix-blend-screen"
+          className="absolute inset-0 rounded-full mix-blend-screen blur-[60px]"
           style={{
             background:
               'radial-gradient(circle at 38% 42%, var(--rgb-red) 0%, transparent 55%)',
-            transform: `translate(${parallax.x * -14}px, ${parallax.y * -14}px)`,
+            transform: `translate(${parallax.x * -14 + parallax.x * 18}px, ${
+              parallax.y * -14 + parallax.y * 18
+            }px)`,
           }}
         />
         <div
-          className="absolute inset-0 rounded-full blur-[60px] mix-blend-screen"
+          className="absolute inset-0 rounded-full mix-blend-screen blur-[60px]"
           style={{
             background:
               'radial-gradient(circle at 62% 58%, var(--rgb-blue) 0%, transparent 55%)',
-            transform: `translate(${parallax.x * 14}px, ${parallax.y * 14}px)`,
+            transform: `translate(${parallax.x * 14 + parallax.x * 18}px, ${
+              parallax.y * 14 + parallax.y * 18
+            }px)`,
           }}
         />
-        {/* green core */}
         <div
-          className="absolute inset-0 rounded-full blur-[70px] mix-blend-screen"
+          className="absolute inset-0 rounded-full mix-blend-screen blur-[70px]"
           style={{
             background:
               'radial-gradient(circle at 50% 50%, var(--rgb-green) 0%, transparent 42%)',
-            opacity: 0.55,
+            opacity: 0.5,
+            transform: `translate(${parallax.x * 18}px, ${parallax.y * 18}px)`,
           }}
         />
-        {/* dark conic sheen for a metallic/3d feel */}
         <div
           className="absolute inset-[14%] rounded-full opacity-70 blur-[24px]"
           style={{
@@ -77,16 +96,18 @@ export function Hero({ active }: { active: boolean }) {
 
       {/* faux technical markings */}
       <div className="pointer-events-none absolute inset-0 z-10 font-mono text-[10px] uppercase tracking-widest text-concrete">
-        <span className="absolute left-4 top-24 md:left-6">
+        <span className="absolute left-5 top-24 md:left-8">
           <span className="text-rgb-green">LAT</span> -5.0938 /{' '}
           <span className="text-rgb-blue">LON</span> -42.8367
         </span>
-        <span className="absolute right-4 top-24 md:right-6">FILE / KEVEN_REEL_2026.aep</span>
-        <span className="absolute bottom-24 left-4 md:left-6">
+        <span className="absolute right-5 top-24 md:right-8">
+          FILE / KEVEN_PORTFOLIO_2026
+        </span>
+        <span className="absolute bottom-28 left-5 md:left-8">
           <span className="text-rgb-red">FPS 24</span> — RES 3840×2160
         </span>
-        <span className="absolute bottom-24 right-4 rotate-90 origin-bottom-right md:right-6">
-          AFTER EFFECTS · ELEMENT 3D
+        <span className="absolute bottom-28 right-5 origin-bottom-right rotate-90 md:right-8">
+          AE · PR · PS · LR
         </span>
         {/* crosshair */}
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-rgb-red">
@@ -94,56 +115,71 @@ export function Hero({ active }: { active: boolean }) {
         </span>
       </div>
 
-      {/* TOP layer words */}
+      {/* TOP row */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -16 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="relative z-20 flex items-start justify-between"
-        style={{ transform: `translateX(${parallax.x * -10}px)` }}
+        className="relative z-20 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-concrete"
+        style={{ transform: `translateX(${parallax.x * -8}px)` }}
       >
-        <span className="spray-green font-display text-[13vw] leading-[0.8] md:text-[9vw]">
-          MOTION
+        <span>
+          PORTFÓLIO <span className="text-foreground">© 2026</span>
         </span>
-        <span className="mt-2 hidden font-mono text-xs uppercase tracking-widest text-concrete md:block">
-          / 01 — REEL
-          <br />/ EXPERIMENTAL
-          <br />/ 2D · 3D
+        <span className="flex items-center gap-2">
+          <span className="blink h-1.5 w-1.5 rounded-full bg-rgb-red" />
+          REC — AO VIVO
         </span>
       </motion.div>
 
       {/* CENTER — giant KEVEN cropped */}
-      <motion.h1
-        initial={{ opacity: 0, scale: 1.15, filter: 'blur(10px)' }}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.12, filter: 'blur(10px)' }}
         animate={show ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : {}}
         transition={{ delay: 0.35, duration: 0.7, ease: 'easeOut' }}
-        className="relative z-20 select-none"
-        style={{ transform: `translate(${parallax.x * 8}px, ${parallax.y * 8}px)` }}
+        className="relative z-20"
       >
-        <span
-          className="glitch rgb-split-lg block font-display text-[34vw] leading-[0.72] text-foreground md:text-[24vw]"
-          data-text="KEVEN"
-        >
-          KEVEN
-        </span>
-      </motion.h1>
+        <h1 className="select-none" style={{ transform: `translate(${parallax.x * 8}px, ${parallax.y * 8}px)` }}>
+          <span
+            className="glitch rgb-split-lg block text-center font-display text-[34vw] leading-[0.72] text-foreground md:text-[23vw]"
+            data-text="KEVEN"
+          >
+            KEVEN
+          </span>
+        </h1>
 
-      {/* BOTTOM layer */}
+        {/* roles strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={show ? { opacity: 1 } : {}}
+          transition={{ delay: 0.65, duration: 0.6 }}
+          className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-1 border-t border-border pt-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-concrete md:text-[11px]"
+        >
+          <span className="text-foreground">MOTION DESIGNER</span>
+          <span className="text-rgb-red">✱</span>
+          <span className="text-foreground">EDITOR DE VÍDEO</span>
+          <span className="text-rgb-blue">✱</span>
+          <span className="text-foreground">FOTÓGRAFO</span>
+        </motion.div>
+      </motion.div>
+
+      {/* BOTTOM row */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.5, duration: 0.6 }}
         className="relative z-20 flex items-end justify-between gap-4"
-        style={{ transform: `translateX(${parallax.x * 10}px)` }}
+        style={{ transform: `translateX(${parallax.x * 8}px)` }}
       >
-        <div className="max-w-[16ch] font-mono text-xs uppercase leading-relaxed tracking-widest text-concrete">
+        <div className="max-w-[20ch] font-mono text-[11px] uppercase leading-relaxed tracking-widest text-concrete">
           <span className="text-rgb-green">■</span> DESIGNER DE MOVIMENTO
           <br />
-          BASEADO EM TIMON — MARANHÃO, BRASIL
+          TIMON — MARANHÃO, BRASIL
         </div>
-        <span className="spray-blue font-display text-[13vw] leading-[0.8] md:text-[9vw]">
-          DESIGN
-        </span>
+        <div className="text-right font-mono text-[11px] uppercase tracking-widest text-concrete">
+          <span className="block text-[9px] text-concrete-dark">HORA LOCAL</span>
+          <span className="text-foreground tabular-nums">{time || '00:00:00'}</span>
+        </div>
       </motion.div>
 
       {/* scroll hint */}

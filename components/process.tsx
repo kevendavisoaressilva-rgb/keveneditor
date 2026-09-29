@@ -3,17 +3,17 @@
 import { motion } from 'motion/react'
 
 const STEPS = [
-  { k: 'IDEA', d: 'briefing · referências · conceito', c: 'spray-red' },
-  { k: 'DESIGN', d: 'frames · estilo · direção de arte', c: 'text-foreground' },
-  { k: 'ANIMATION', d: 'keyframes · 3d · timing', c: 'spray-blue' },
-  { k: 'FINAL', d: 'render · grade · entrega', c: 'spray-green' },
+  { k: 'BRIEFING', d: 'escuta · referências · conceito', c: 'spray-red' },
+  { k: 'DIREÇÃO', d: 'storyboard · roteiro · arte', c: 'text-foreground' },
+  { k: 'PRODUÇÃO', d: 'animação · captação · edição', c: 'spray-blue' },
+  { k: 'ENTREGA', d: 'render · grade · formatos', c: 'spray-green' },
 ]
 
 export function Process() {
   return (
-    <section className="relative px-4 py-20 md:px-6 md:py-28">
+    <section id="process" className="relative px-5 py-20 md:px-8 md:py-28">
       <div className="mb-10 flex items-end justify-between border-b border-border pb-4">
-        <h2 className="font-display text-6xl leading-none text-foreground md:text-8xl">
+        <h2 className="font-display text-[14vw] leading-none text-foreground md:text-[7vw]">
           PRO<span className="spray-blue">CESS</span>
         </h2>
         <span className="hidden font-mono text-[11px] uppercase tracking-widest text-concrete md:block">
@@ -29,7 +29,7 @@ export function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="relative border border-border p-5 md:min-h-[42vh] md:border-r-0 md:last:border-r"
+            className="group relative border border-border p-5 transition-colors hover:bg-muted md:min-h-[42vh] md:border-r-0 md:last:border-r"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs uppercase tracking-widest text-concrete">
@@ -49,7 +49,6 @@ export function Process() {
               </p>
             </div>
 
-            {/* faux frame ticks */}
             <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-concrete-dark">
               ▮▮▮▯▯
             </span>

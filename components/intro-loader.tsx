@@ -1,35 +1,49 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 
 export function IntroLoader({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState(0) // 0 noise, 1 line, 2 name, 3 flash-out
   const [gone, setGone] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const progressRef = useRef(0)
 
   useEffect(() => {
+    const counter = setInterval(() => {
+      progressRef.current = Math.min(
+        100,
+        progressRef.current + Math.floor(Math.random() * 11) + 5,
+      )
+      setProgress(progressRef.current)
+      if (progressRef.current >= 100) clearInterval(counter)
+    }, 95)
+
     const t1 = setTimeout(() => setPhase(1), 350)
-    const t2 = setTimeout(() => setPhase(2), 750)
-    const t3 = setTimeout(() => setPhase(3), 1650)
+    const t2 = setTimeout(() => setPhase(2), 800)
+    const t3 = setTimeout(() => setPhase(3), 1700)
     const t4 = setTimeout(() => {
       setGone(true)
       onDone()
-    }, 2000)
-    return () => [t1, t2, t3, t4].forEach(clearTimeout)
+    }, 2050)
+    return () => {
+      clearInterval(counter)
+      ;[t1, t2, t3, t4].forEach(clearTimeout)
+    }
   }, [onDone])
 
   return (
     <AnimatePresence>
       {!gone && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-background"
+          exit={{ y: '-100%' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden
         >
           {/* noise plate */}
-          <div className="grain-overlay !opacity-[0.18]" />
-          <div className="scanlines" />
+          <div className="grain-overlay !opacity-[0.15]" />
+          <div className="scanlines scanlines-strong" />
 
           {/* thin scan line */}
           {phase >= 1 && (
@@ -69,10 +83,16 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
           )}
 
           {/* corner ticks */}
-          <span className="absolute left-4 top-4 font-mono text-[10px] tracking-widest text-concrete">
+          <span className="absolute left-4 top-4 font-mono text-[10px] tracking-widest text-concrete md:left-6">
             LOADING / TIMON—MA
           </span>
-          <span className="absolute bottom-4 right-4 font-mono text-[10px] tracking-widest text-concrete">
+          <span className="absolute right-4 top-4 font-mono text-[10px] tracking-widest text-concrete md:right-6">
+            PORTFÓLIO — V2.0
+          </span>
+          <span className="absolute bottom-4 left-4 font-mono text-[10px] tracking-widest text-concrete tabular-nums md:left-6">
+            {String(progress).padStart(3, '0')}%
+          </span>
+          <span className="absolute bottom-4 right-4 font-mono text-[10px] tracking-widest text-concrete md:right-6">
             © 2026
           </span>
         </motion.div>

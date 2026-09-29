@@ -1,12 +1,19 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Anton, Space_Mono } from 'next/font/google'
+import { Anton, Archivo, Space_Mono } from 'next/font/google'
 import './globals.css'
 
 const anton = Anton({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-anton',
+  display: 'swap',
+})
+
+const archivo = Archivo({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-archivo',
   display: 'swap',
 })
 
@@ -18,14 +25,13 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'KEVEN — MOTION DESIGNER / TIMON, MA',
+  title: 'KEVEN — MOTION · EDIÇÃO · FOTO / TIMON, MA',
   description:
-    'KEVEN — Motion Designer de Timon, Maranhão. Animação, identidade visual em movimento e experiências digitais com After Effects e Element 3D.',
-  generator: 'v0.app',
+    'Portfólio de Keven — motion designer, editor de vídeo e fotógrafo de Timon — Maranhão. Animação 2D/3D, edição com ritmo e fotografia autoral.',
   openGraph: {
-    title: 'KEVEN — MOTION DESIGNER',
+    title: 'KEVEN — MOTION DESIGN / EDIÇÃO / FOTOGRAFIA',
     description:
-      'Experiência visual autoral de um Motion Designer de Timon — Maranhão.',
+      'Animação, edição de vídeo e fotografia — direto de Timon, Maranhão, para qualquer lugar.',
     locale: 'pt_BR',
     type: 'website',
   },
@@ -33,7 +39,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#000000',
+  themeColor: '#0a0a0a',
 }
 
 export default function RootLayout({
@@ -42,7 +48,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`${anton.variable} ${spaceMono.variable} bg-background`}>
+    <html
+      lang="pt-BR"
+      className={`${anton.variable} ${archivo.variable} ${spaceMono.variable} bg-background`}
+    >
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

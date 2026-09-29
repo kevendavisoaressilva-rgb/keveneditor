@@ -4,10 +4,12 @@
 
 @theme inline {
   --font-display: var(--font-anton), 'Arial Narrow', sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-space-mono), ui-monospace, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
   --color-concrete: var(--concrete);
   --color-concrete-dark: var(--concrete-dark);
   --color-rgb-red: var(--rgb-red);
@@ -18,14 +20,15 @@
 
 :root {
   color-scheme: dark;
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.97 0 0);
+  --background: oklch(0.115 0 0);
+  --foreground: oklch(0.955 0 0);
+  --muted: oklch(0.17 0 0);
   --concrete: oklch(0.62 0 0);
-  --concrete-dark: oklch(0.28 0 0);
+  --concrete-dark: oklch(0.3 0 0);
   --rgb-red: oklch(0.63 0.29 27);
   --rgb-green: oklch(0.85 0.31 142);
-  --rgb-blue: oklch(0.6 0.31 262);
-  --border: oklch(1 0 0 / 14%);
+  --rgb-blue: oklch(0.62 0.28 262);
+  --border: oklch(1 0 0 / 12%);
   --radius: 0px;
 }
 
@@ -35,17 +38,37 @@
   }
   html {
     background-color: var(--background);
+    scroll-behavior: smooth;
   }
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
   ::selection {
     background: var(--rgb-red);
-    color: var(--foreground);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 1px solid var(--rgb-green);
+    outline-offset: 2px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.32 0 0);
+    border: 3px solid var(--background);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
@@ -63,7 +86,7 @@
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
@@ -82,21 +105,24 @@
   inset: 0;
   z-index: 55;
   pointer-events: none;
-  opacity: 0.28;
+  opacity: 0.12;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
     transparent 2px,
-    oklch(0 0 0 / 45%) 3px,
+    oklch(0 0 0 / 40%) 3px,
     transparent 4px
   );
+}
+.scanlines-strong {
+  opacity: 0.22;
 }
 
 /* ---------- Concrete / paper texture ---------- */
 .texture-concrete {
   background-image:
-    radial-gradient(oklch(1 0 0 / 4%) 1px, transparent 1px),
-    radial-gradient(oklch(1 0 0 / 3%) 1px, transparent 1px);
+    radial-gradient(oklch(1 0 0 / 3%) 1px, transparent 1px),
+    radial-gradient(oklch(1 0 0 / 2%) 1px, transparent 1px);
   background-size: 5px 5px, 11px 11px;
   background-position: 0 0, 3px 4px;
 }
@@ -151,7 +177,7 @@
   display: inline-flex;
   white-space: nowrap;
   will-change: transform;
-  animation: marquee 26s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 .marquee-track.reverse {
   animation-direction: reverse;
@@ -161,13 +187,7 @@
   to { transform: translateX(-50%); }
 }
 
-/* ---------- Torn / rough edges via mask ---------- */
-.torn-bottom {
-  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
-}
-
-/* ---------- Sticker rotate helpers ---------- */
+/* ---------- Sticker ---------- */
 .sticker {
   box-shadow: 3px 3px 0 oklch(0 0 0 / 60%);
 }
@@ -175,18 +195,18 @@
 /* ---------- Spray paint text ---------- */
 .spray-red {
   color: var(--rgb-red);
-  text-shadow: 0 0 18px oklch(0.63 0.29 27 / 55%), 0 0 4px oklch(0.63 0.29 27 / 80%);
+  text-shadow: 0 0 18px oklch(0.63 0.29 27 / 45%), 0 0 4px oklch(0.63 0.29 27 / 70%);
 }
 .spray-green {
   color: var(--rgb-green);
-  text-shadow: 0 0 18px oklch(0.85 0.31 142 / 55%), 0 0 4px oklch(0.85 0.31 142 / 80%);
+  text-shadow: 0 0 18px oklch(0.85 0.31 142 / 45%), 0 0 4px oklch(0.85 0.31 142 / 70%);
 }
 .spray-blue {
   color: var(--rgb-blue);
-  text-shadow: 0 0 18px oklch(0.6 0.31 262 / 55%), 0 0 4px oklch(0.6 0.31 262 / 80%);
+  text-shadow: 0 0 18px oklch(0.62 0.28 262 / 45%), 0 0 4px oklch(0.62 0.28 262 / 70%);
 }
 
-/* hollow / outline graffiti text */
+/* ---------- Outline type ---------- */
 .outline-graffiti {
   color: transparent;
   -webkit-text-stroke: 2px var(--foreground);
@@ -195,63 +215,30 @@
   color: transparent;
   -webkit-text-stroke: 2px var(--rgb-red);
 }
-
-/* dripping paint underline */
-.drip {
-  position: relative;
+.outline-num {
+  color: transparent;
+  -webkit-text-stroke: 1.5px oklch(1 0 0 / 25%);
+  transition: -webkit-text-stroke-color 0.3s ease;
 }
-.drip::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -0.15em;
-  height: 0.16em;
-  width: 100%;
-  background: currentColor;
-  box-shadow:
-    0.6em 0.2em 0 -0.02em currentColor,
-    2em 0.35em 0 -0.04em currentColor,
-    3.6em 0.15em 0 -0.03em currentColor;
+.group:hover .outline-num {
+  -webkit-text-stroke-color: oklch(1 0 0 / 45%);
 }
 
-/* masking tape strip */
-.tape {
-  position: relative;
-  background: oklch(0.85 0.02 90 / 22%);
-  backdrop-filter: blur(1px);
-  box-shadow: 0 1px 0 oklch(1 0 0 / 10%);
+/* ---------- Blink (REC dot / status) ---------- */
+.blink {
+  animation: blink 1.4s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
 }
 
-/* spray splatter mark (uses generated asset via screen blend) */
-.spray-asset {
-  mix-blend-mode: screen;
-  opacity: 0.9;
-  pointer-events: none;
+/* ---------- No scrollbar (horizontal strips) ---------- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-/* ---------- 3D floating object w/ chromatic aberration ---------- */
-.chromatic-3d {
-  filter:
-    drop-shadow(-5px 0 oklch(0.63 0.29 27 / 60%))
-    drop-shadow(5px 0 oklch(0.6 0.31 262 / 60%))
-    drop-shadow(0 0 2px oklch(0.85 0.31 142 / 45%));
-  animation: float-3d 8s ease-in-out infinite;
-}
-@keyframes float-3d {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(4deg); }
-}
-
-/* rough marker scribble underline via mask */
-.marker-line {
-  height: 0.35rem;
-  background: var(--rgb-red);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='12'%3E%3Cpath d='M2 8 Q40 2 80 7 T160 6 T198 4' stroke='black' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='12'%3E%3Cpath d='M2 8 Q40 2 80 7 T160 6 T198 4' stroke='black' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ---------- Reduced motion ---------- */
@@ -260,15 +247,7 @@
   .glitch::before,
   .glitch::after,
   .marquee-track,
-  .chromatic-3d {
+  .blink {
     animation: none !important;
-  }
-}
-
-/* Hide custom cursor helpers on touch */
-@media (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none !important;
   }
 }
