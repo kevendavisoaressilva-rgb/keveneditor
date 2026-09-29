@@ -12,7 +12,6 @@ import { Services } from './services'
 import { Process } from './process'
 import { Contact } from './contact'
 import { Footer } from './footer'
-import { Marquee } from './marquee'
 
 export function Experience({ works }: { works: Work[] }) {
   const [introDone, setIntroDone] = useState(false)
@@ -21,33 +20,15 @@ export function Experience({ works }: { works: Work[] }) {
     <>
       <IntroLoader onDone={() => setIntroDone(true)} />
 
-      {/* global texture overlays */}
-      <div className="grain-overlay" aria-hidden />
-      <div className="scanlines" aria-hidden />
+      {/* whisper of film grain */}
+      <div className="grain" aria-hidden />
 
       <Nav />
 
       <main className="relative">
         <Hero active={introDone} />
-        <Marquee
-          items={[
-            'MOTION DESIGN',
-            'EDIÇÃO DE VÍDEO',
-            'FOTOGRAFIA',
-            '2D',
-            '3D',
-            'TIMON — MA',
-            '2026',
-          ]}
-          accent="red"
-        />
         <Portfolio works={works} />
         <About />
-        <Marquee
-          items={['MOVEMENT', 'CUT', 'FRAME', 'TIME', 'LIGHT', 'RENDER', 'SHUTTER']}
-          accent="blue"
-          reverse
-        />
         <Services />
         <Tools />
         <Process />

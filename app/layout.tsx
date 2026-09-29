@@ -1,19 +1,20 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Anton, Archivo, Space_Mono } from 'next/font/google'
+import { Archivo, Fraunces, Space_Mono } from 'next/font/google'
 import './globals.css'
 
-const anton = Anton({
-  weight: '400',
+const archivo = Archivo({
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ['latin'],
-  variable: '--font-anton',
+  variable: '--font-archivo',
   display: 'swap',
 })
 
-const archivo = Archivo({
-  weight: ['400', '500', '600', '700'],
+const fraunces = Fraunces({
+  weight: ['400', '500'],
+  style: ['italic'],
   subsets: ['latin'],
-  variable: '--font-archivo',
+  variable: '--font-fraunces',
   display: 'swap',
 })
 
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#0a0a0a',
+  themeColor: '#101014',
 }
 
 export default function RootLayout({
@@ -50,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${anton.variable} ${archivo.variable} ${spaceMono.variable} bg-background`}
+      className={`${archivo.variable} ${fraunces.variable} ${spaceMono.variable} bg-background`}
     >
       <body className="antialiased">
         {children}

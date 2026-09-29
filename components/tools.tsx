@@ -3,47 +3,38 @@
 import { motion } from 'motion/react'
 
 const TOOLS = [
-  { t: 'AFTER EFFECTS', d: 'motion / composição' },
-  { t: 'PREMIERE PRO', d: 'edição / cortes' },
-  { t: 'PHOTOSHOP', d: 'tratamento / arte' },
-  { t: 'LIGHTROOM', d: 'cor / fotografia' },
-  { t: 'ELEMENT 3D', d: '3d no after' },
-  { t: 'RESOLVE', d: 'grade / cor' },
+  'AFTER EFFECTS',
+  'PREMIERE PRO',
+  'PHOTOSHOP',
+  'LIGHTROOM',
+  'ELEMENT 3D',
+  'DAVINCI RESOLVE',
 ]
 
 export function Tools() {
   return (
-    <section className="border-y border-border px-5 py-16 md:px-8 md:py-24">
-      <div className="mb-10 flex items-end justify-between">
-        <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-concrete">
-          / TOOLKIT
-        </p>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-concrete-dark">
-          {String(TOOLS.length).padStart(2, '0')} FERRAMENTAS
-        </span>
-      </div>
-
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
-        {TOOLS.map((t, i) => (
-          <motion.div
-            key={t.t}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.06 }}
-            className="group border-l border-border pl-4 transition-colors hover:border-rgb-red"
-          >
-            <span className="font-mono text-[10px] tracking-widest text-rgb-green">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <h3 className="mt-1 font-display text-3xl leading-none text-foreground md:text-4xl">
-              {t.t}
-            </h3>
-            <p className="mt-1.5 font-mono text-[10px] uppercase tracking-widest text-concrete">
-              {t.d}
-            </p>
-          </motion.div>
-        ))}
+    <section className="border-t border-border">
+      <div className="container-site py-14 md:py-20">
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+          <p className="eyebrow">TOOLKIT</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {TOOLS.map((t, i) => (
+              <motion.span
+                key={t}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="group flex items-baseline gap-1.5 font-mono text-[11px] uppercase tracking-widest text-soft transition-colors hover:text-foreground"
+              >
+                <span className="text-[9px] text-accent">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                {t}
+              </motion.span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

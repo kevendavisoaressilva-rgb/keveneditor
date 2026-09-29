@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { Work } from '@/lib/projects'
 
-export function ReelModal({
+export function VideoModal({
   work,
   onClose,
 }: {
@@ -37,26 +37,25 @@ export function ReelModal({
           aria-label={`Assistir ${work.title}`}
         >
           <motion.figure
-            initial={{ scale: 0.95, y: 18 }}
+            initial={{ scale: 0.96, y: 18 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.97, y: 10 }}
+            exit={{ scale: 0.98, y: 10 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[85vh] max-h-[900px] w-auto max-w-[92vw] overflow-hidden border border-border bg-paper"
-            style={{ aspectRatio: '9 / 16' }}
+            className="relative aspect-video w-[min(92vw,1200px)] overflow-hidden border border-border bg-paper"
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
-              src={`https://www.instagram.com/reel/${work.reelCode}/embed`}
-              title={`${work.title} — Instagram`}
-              className="h-full w-full border-0"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              src={`https://player.vimeo.com/video/${work.vimeoId}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`}
+              title={`${work.title} — ${work.subtitle}`}
+              className="absolute inset-0 h-full w-full"
+              allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             />
           </motion.figure>
 
-          <figcaption className="pointer-events-none absolute bottom-6 left-1/2 w-full -translate-x-1/2 text-center">
+          <figcaption className="pointer-events-none absolute bottom-6 left-1/2 w-full -translate-x-1/2 px-6 text-center">
             <span className="font-mono text-[10px] uppercase tracking-widest text-soft">
-              {work.title} — {work.subtitle} · {work.year}
+              {work.index} — {work.title} · {work.subtitle} · {work.year}
             </span>
           </figcaption>
 

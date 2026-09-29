@@ -3,193 +3,183 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
-function useLocalTime() {
-  const [time, setTime] = useState('')
+/* Live SMPTE-style timecode ticking at 24fps */
+function useTimecode() {
+  const [tc, setTc] = useState('00:00:00:00')
   useEffect(() => {
-    const tick = () => {
-      setTime(
-        new Date().toLocaleTimeString('pt-BR', {
-          hour12: false,
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          timeZone: 'America/Fortaleza',
-        }),
-      )
-    }
-    tick()
-    const id = setInterval(tick, 1000)
+    const start = performance.now()
+    const id = setInterval(() => {
+      const elapsed = (performance.now() - start) / 1000
+      const totalFrames = Math.floor(elapsed * 24)
+      const ff = totalFrames % 24
+      const s = Math.floor(totalFrames / 24) % 60
+      const m = Math.floor(totalFrames / (24 * 60)) % 60
+      const h = Math.floor(totalFrames / (24 * 3600))
+      const p = (n: number) => String(n).padStart(2, '0')
+      setTc(`${p(h)}:${p(m)}:${p(s)}:${p(ff)}`)
+    }, 1000 / 24)
     return () => clearInterval(id)
   }, [])
-  return time
+  return tc
+}
+
+const TRACKS: {
+  label: string
+  clips: { t: string; w: string; kind: 'm' | 'e' | 'f' }[]
+}[] = [
+  {
+    label: 'V1',
+    clips: [
+      { t: 'ALOK_TRANSMISSÃO', w: '24%', kind: 'm' },
+      { t: 'CAST_TV_INTRO', w: '17%', kind: 'm' },
+      { t: '2D_FRAME_BY_FRAME', w: '13%', kind: 'm' },
+    ],
+  },
+  {
+    label: 'V2',
+    clips: [
+      { t: 'REC_001', w: '11%', kind: 'e' },
+      { t: 'REC_002', w: '14%', kind: 'e' },
+      { t: 'REC_003', w: '9%', kind: 'e' },
+    ],
+  },
+  {
+    label: 'A1',
+    clips: [
+      { t: 'MIX_FINAL', w: '8%', kind: 'f' },
+      { t: 'SHOW_ÁUDIO', w: '20%', kind: 'f' },
+      { t: '', w: '16%', kind: 'f' },
+    ],
+  },
+]
+
+const CLIP_STYLE: Record<string, string> = {
+  m: 'bg-paper text-soft border-foreground/15',
+  e: 'bg-accent/15 text-accent border-accent/40',
+  f: 'bg-paper/60 text-soft/70 border-foreground/10',
 }
 
 export function Hero({ active }: { active: boolean }) {
-  const [parallax, setParallax] = useState({ x: 0, y: 0 })
-  const time = useLocalTime()
-
-  useEffect(() => {
-    const fine =
-      typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
-    if (!fine) return
-    const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2
-      const y = (e.clientY / window.innerHeight - 0.5) * 2
-      setParallax({ x, y })
-    }
-    window.addEventListener('mousemove', onMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [])
-
+  const tc = useTimecode()
   const show = active
 
   return (
     <section
       id="top"
-      className="texture-concrete relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden px-5 pb-6 pt-20 md:px-8"
+      className="relative flex min-h-[100svh] w-full flex-col overflow-hidden"
     >
-      {/* central abstract gradient */}
-      <motion.div
+      {/* ambient accent glow */}
+      <div
         aria-hidden
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={show ? { opacity: 0.55, scale: 1 } : {}}
-        transition={{ duration: 1.1, ease: 'easeOut' }}
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[72vmin] w-[72vmin] -translate-x-1/2 -translate-y-1/2"
-      >
-        <div
-          className="absolute inset-0 rounded-full mix-blend-screen blur-[60px]"
-          style={{
-            background:
-              'radial-gradient(circle at 38% 42%, var(--rgb-red) 0%, transparent 55%)',
-            transform: `translate(${parallax.x * -14 + parallax.x * 18}px, ${
-              parallax.y * -14 + parallax.y * 18
-            }px)`,
-          }}
-        />
-        <div
-          className="absolute inset-0 rounded-full mix-blend-screen blur-[60px]"
-          style={{
-            background:
-              'radial-gradient(circle at 62% 58%, var(--rgb-blue) 0%, transparent 55%)',
-            transform: `translate(${parallax.x * 14 + parallax.x * 18}px, ${
-              parallax.y * 14 + parallax.y * 18
-            }px)`,
-          }}
-        />
-        <div
-          className="absolute inset-0 rounded-full mix-blend-screen blur-[70px]"
-          style={{
-            background:
-              'radial-gradient(circle at 50% 50%, var(--rgb-green) 0%, transparent 42%)',
-            opacity: 0.5,
-            transform: `translate(${parallax.x * 18}px, ${parallax.y * 18}px)`,
-          }}
-        />
-        <div
-          className="absolute inset-[14%] rounded-full opacity-70 blur-[24px]"
-          style={{
-            background:
-              'conic-gradient(from 140deg, oklch(0.28 0 0), oklch(0.05 0 0), oklch(0.32 0 0), oklch(0.05 0 0), oklch(0.28 0 0))',
-          }}
-        />
-      </motion.div>
+        className="pointer-events-none absolute -right-[15%] top-[-30%] h-[80vmin] w-[80vmin] rounded-full opacity-[0.07] blur-[100px]"
+        style={{ background: 'var(--accent)' }}
+      />
 
-      {/* faux technical markings */}
-      <div className="pointer-events-none absolute inset-0 z-10 font-mono text-[10px] uppercase tracking-widest text-concrete">
-        <span className="absolute left-5 top-24 md:left-8">
-          <span className="text-rgb-green">LAT</span> -5.0938 /{' '}
-          <span className="text-rgb-blue">LON</span> -42.8367
-        </span>
-        <span className="absolute right-5 top-24 md:right-8">
-          FILE / KEVEN_PORTFOLIO_2026
-        </span>
-        <span className="absolute bottom-28 left-5 md:left-8">
-          <span className="text-rgb-red">FPS 24</span> — RES 3840×2160
-        </span>
-        <span className="absolute bottom-28 right-5 origin-bottom-right rotate-90 md:right-8">
-          AE · PR · PS · LR
-        </span>
-        {/* crosshair */}
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-rgb-red">
-          +
-        </span>
-      </div>
+      <div className="container-site flex flex-1 flex-col justify-between pt-28 md:pt-32">
+        {/* eyebrow + indices */}
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={show ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="flex items-center justify-between"
+        >
+          <p className="eyebrow">PORTFÓLIO © 2026</p>
+          <p className="eyebrow hidden md:block">TIMON — MA, BRASIL</p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-soft tabular-nums">
+            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
+            {tc}
+          </p>
+        </motion.div>
 
-      {/* TOP row */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={show ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="relative z-20 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-concrete"
-        style={{ transform: `translateX(${parallax.x * -8}px)` }}
-      >
-        <span>
-          PORTFÓLIO <span className="text-foreground">© 2026</span>
-        </span>
-        <span className="flex items-center gap-2">
-          <span className="blink h-1.5 w-1.5 rounded-full bg-rgb-red" />
-          REC — AO VIVO
-        </span>
-      </motion.div>
-
-      {/* CENTER — giant KEVEN cropped */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.12, filter: 'blur(10px)' }}
-        animate={show ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : {}}
-        transition={{ delay: 0.35, duration: 0.7, ease: 'easeOut' }}
-        className="relative z-20"
-      >
-        <h1 className="select-none" style={{ transform: `translate(${parallax.x * 8}px, ${parallax.y * 8}px)` }}>
-          <span
-            className="glitch rgb-split-lg block text-center font-display text-[34vw] leading-[0.72] text-foreground md:text-[23vw]"
-            data-text="KEVEN"
+        {/* headline */}
+        <div className="py-14 md:py-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={show ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.28, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[clamp(4.5rem,15vw,14rem)] font-extrabold uppercase leading-[0.85] tracking-[-0.045em] text-foreground"
           >
             KEVEN
-          </span>
-        </h1>
+          </motion.h1>
 
-        {/* roles strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={show ? { opacity: 1 } : {}}
-          transition={{ delay: 0.65, duration: 0.6 }}
-          className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-1 border-t border-border pt-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-concrete md:text-[11px]"
-        >
-          <span className="text-foreground">MOTION DESIGNER</span>
-          <span className="text-rgb-red">✱</span>
-          <span className="text-foreground">EDITOR DE VÍDEO</span>
-          <span className="text-rgb-blue">✱</span>
-          <span className="text-foreground">FOTÓGRAFO</span>
-        </motion.div>
-      </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={show ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.42, duration: 0.6 }}
+            className="mt-6 max-w-[58ch] text-lg leading-relaxed text-soft md:mt-8 md:text-2xl"
+          >
+            Motion designer, <span className="serif-i text-foreground">editor de vídeo</span>{' '}
+            e fotógrafo — construo narrativas com{' '}
+            <span className="serif-i text-foreground">ritmo, movimento e luz</span>.
+          </motion.p>
 
-      {/* BOTTOM row */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={show ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.5, duration: 0.6 }}
-        className="relative z-20 flex items-end justify-between gap-4"
-        style={{ transform: `translateX(${parallax.x * 8}px)` }}
-      >
-        <div className="max-w-[20ch] font-mono text-[11px] uppercase leading-relaxed tracking-widest text-concrete">
-          <span className="text-rgb-green">■</span> DESIGNER DE MOVIMENTO
-          <br />
-          TIMON — MARANHÃO, BRASIL
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={show ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.54, duration: 0.6 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <a
+              href="#work"
+              className="group flex items-center gap-3 bg-foreground px-6 py-3.5 font-mono text-[11px] font-bold uppercase tracking-widest text-background transition-colors hover:bg-accent hover:text-white"
+            >
+              VER TRABALHOS
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                ↓
+              </span>
+            </a>
+            <a
+              href="https://w.app/keveneditor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 border border-border px-6 py-3.5 font-mono text-[11px] uppercase tracking-widest text-foreground transition-colors hover:border-foreground/50"
+            >
+              FALAR COMIGO ↗
+            </a>
+          </motion.div>
         </div>
-        <div className="text-right font-mono text-[11px] uppercase tracking-widest text-concrete">
-          <span className="block text-[9px] text-concrete-dark">HORA LOCAL</span>
-          <span className="text-foreground tabular-nums">{time || '00:00:00'}</span>
-        </div>
-      </motion.div>
+      </div>
 
-      {/* scroll hint */}
+      {/* ——— editor timeline strip ——— */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={show ? { opacity: 1 } : {}}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-3 left-1/2 z-20 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-concrete"
+        transition={{ delay: 0.7, duration: 0.8 }}
+        className="relative border-t border-border"
+        aria-hidden
       >
-        ↓ role para explorar
+        {/* ruler */}
+        <div className="container-site relative">
+          <div className="ruler h-4 w-full" />
+          <div className="ruler-minor absolute inset-x-10 top-0 h-2" />
+        </div>
+
+        {/* playhead */}
+        <div className="pointer-events-none absolute inset-y-0 left-[42%] z-10 w-px bg-accent">
+          <span className="playhead-tip absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-accent" />
+        </div>
+
+        {/* tracks */}
+        <div className="container-site flex flex-col gap-1 pb-1.5">
+          {TRACKS.map((track) => (
+            <div key={track.label} className="flex items-center gap-2">
+              <span className="w-6 shrink-0 font-mono text-[9px] uppercase tracking-widest text-soft/60">
+                {track.label}
+              </span>
+              <div className="flex h-7 flex-1 items-stretch gap-1 overflow-hidden md:h-8">
+                {track.clips.map((c, i) => (
+                  <span
+                    key={i}
+                    style={{ width: c.w }}
+                    className={`flex items-center truncate border px-2 font-mono text-[8px] tracking-wider md:text-[9px] ${CLIP_STYLE[c.kind]}`}
+                  >
+                    {c.t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </section>
   )

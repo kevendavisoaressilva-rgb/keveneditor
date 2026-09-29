@@ -4,60 +4,61 @@ import { motion } from 'motion/react'
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      className="texture-concrete relative overflow-hidden px-5 py-24 md:px-8 md:py-40"
-    >
-      <p className="relative z-10 mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-concrete">
-        / CONTATO — FIM DA TRANSMISSÃO
-      </p>
+    <section id="contact" className="border-t border-border">
+      <div className="container-site flex flex-col items-center py-28 text-center md:py-44">
+        <p className="eyebrow mb-8">05 — CONTATO</p>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="relative z-10 font-display text-[14vw] leading-[0.84] text-foreground md:text-[11vw]"
-      >
-        VAMOS <span className="spray-green">CRIAR</span>{' '}
-        <span className="glitch rgb-split-lg" data-text="ALGO">
-          ALGO
-        </span>{' '}
-        <span className="outline-graffiti">FORA DA</span>{' '}
-        <span className="spray-red">CURVA</span>?
-      </motion.h2>
-
-      <div className="relative z-10 mt-14 flex flex-col gap-4 md:mt-20 md:flex-row md:gap-6">
-        <a
-          href="https://w.app/keveneditor"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-1 items-center justify-between border border-border bg-rgb-green px-6 py-6 text-background transition-transform hover:-translate-y-1 md:px-8 md:py-8"
+        <motion.h2
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-[clamp(2.8rem,8vw,8rem)] font-bold leading-[0.95] tracking-[-0.04em] text-foreground"
         >
-          <span className="font-display text-3xl leading-none md:text-5xl">
-            FALAR NO WHATSAPP
-          </span>
-          <span className="font-mono text-2xl md:text-4xl">↗</span>
-        </a>
+          Tem um projeto
+          <br />
+          <span className="serif-i font-normal text-accent">em mente?</span>
+        </motion.h2>
 
-        <a
-          href="https://linktr.ee/keveneditor"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-1 items-center justify-between border border-border px-6 py-6 text-foreground transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background md:px-8 md:py-8"
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mt-14 flex flex-col items-center gap-6"
         >
-          <span className="font-display text-3xl leading-none md:text-5xl">
-            MINHAS REDES
-          </span>
-          <span className="font-mono text-2xl md:text-4xl">↗</span>
-        </a>
+          <a
+            href="https://w.app/keveneditor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative text-2xl font-bold uppercase tracking-[-0.03em] text-foreground md:text-4xl"
+          >
+            CHAMAR NO WHATSAPP ↗
+            <span className="absolute -bottom-1.5 left-0 h-[3px] w-full origin-left scale-x-100 bg-accent transition-transform duration-300 group-hover:scale-x-0" />
+            <span className="absolute -bottom-1.5 left-0 h-[3px] w-full origin-right scale-x-0 bg-foreground transition-transform duration-300 group-hover:scale-x-100" />
+          </a>
+
+          <a
+            href="https://linktr.ee/keveneditor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[11px] uppercase tracking-widest text-soft transition-colors hover:text-foreground"
+          >
+            TODAS AS REDES ↗
+          </a>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20 max-w-[52ch] font-mono text-[10px] uppercase leading-relaxed tracking-widest text-soft"
+        >
+          Disponível para motion design, edição de vídeo e fotografia — de qualquer
+          lugar, direto de Timon — MA · resposta rápida no horário comercial (BRT)
+        </motion.p>
       </div>
-
-      <p className="relative z-10 mt-12 max-w-[46ch] font-mono text-xs uppercase leading-relaxed tracking-widest text-concrete">
-        <span className="text-rgb-blue">■</span> Disponível para projetos de motion
-        design, edição de vídeo e fotografia — de qualquer lugar, direto de
-        Timon — MA.
-      </p>
     </section>
   )
 }

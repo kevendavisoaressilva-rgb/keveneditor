@@ -3,58 +3,46 @@
 import { motion } from 'motion/react'
 
 const STEPS = [
-  { k: 'BRIEFING', d: 'escuta · referências · conceito', c: 'spray-red' },
-  { k: 'DIREÇÃO', d: 'storyboard · roteiro · arte', c: 'text-foreground' },
-  { k: 'PRODUÇÃO', d: 'animação · captação · edição', c: 'spray-blue' },
-  { k: 'ENTREGA', d: 'render · grade · formatos', c: 'spray-green' },
+  { k: 'Briefing', d: 'escuta · referências · conceito' },
+  { k: 'Direção', d: 'storyboard · roteiro · arte' },
+  { k: 'Produção', d: 'animação · captação · edição' },
+  { k: 'Entrega', d: 'render · grade · formatos' },
 ]
 
 export function Process() {
   return (
-    <section id="process" className="relative px-5 py-20 md:px-8 md:py-28">
-      <div className="mb-10 flex items-end justify-between border-b border-border pb-4">
-        <h2 className="font-display text-[14vw] leading-none text-foreground md:text-[7vw]">
-          PRO<span className="spray-blue">CESS</span>
-        </h2>
-        <span className="hidden font-mono text-[11px] uppercase tracking-widest text-concrete md:block">
-          / STORYBOARD
-        </span>
-      </div>
+    <section id="process" className="border-t border-border">
+      <div className="container-site py-24 md:py-36">
+        <div className="mb-14 md:mb-20">
+          <p className="eyebrow mb-5">04 — PROCESSO</p>
+          <h2 className="text-[clamp(2.6rem,6.5vw,6rem)] font-bold leading-[0.95] tracking-[-0.035em] text-foreground">
+            Do briefing ao <span className="serif-i font-normal text-accent">render</span>
+          </h2>
+        </div>
 
-      <ol className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-0">
-        {STEPS.map((s, i) => (
-          <motion.li
-            key={s.k}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group relative border border-border p-5 transition-colors hover:bg-muted md:min-h-[42vh] md:border-r-0 md:last:border-r"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-xs uppercase tracking-widest text-concrete">
-                STEP {String(i + 1).padStart(2, '0')}
+        <ol className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
+          {STEPS.map((s, i) => (
+            <motion.li
+              key={s.k}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: i * 0.07 }}
+              className="border-t border-border pt-5"
+            >
+              <span className="num-stroke block text-6xl font-extrabold tracking-[-0.04em] md:text-7xl">
+                {String(i + 1).padStart(2, '0')}
               </span>
-              <span className={`font-mono text-lg ${s.c}`}>
-                {i < STEPS.length - 1 ? '→' : '■'}
-              </span>
-            </div>
-
-            <div className="mt-10 md:mt-24">
-              <h3 className={`font-display text-5xl leading-none md:text-6xl ${s.c}`}>
+              <h3 className="mt-4 text-xl font-bold uppercase tracking-[-0.02em] text-foreground md:text-2xl">
                 {s.k}
               </h3>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-widest text-concrete">
+              <p className="mt-2 font-mono text-[10px] uppercase leading-relaxed tracking-widest text-soft">
                 {s.d}
               </p>
-            </div>
-
-            <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-concrete-dark">
-              ▮▮▮▯▯
-            </span>
-          </motion.li>
-        ))}
-      </ol>
+            </motion.li>
+          ))}
+        </ol>
+      </div>
     </section>
   )
 }
