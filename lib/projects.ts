@@ -156,6 +156,18 @@ export const WORKS: Work[] = [
     vimeoId: '1231899848',
     vimeoUrl: 'https://vimeo.com/1231899848',
   },
+  {
+    id: 'jn-busin3ss',
+    index: '12',
+    title: 'JN BUSIN3SS',
+    subtitle: 'PROJETO DE MOTION',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / 2D',
+    year: '2026',
+    accent: 'red',
+    vimeoId: '1231903211',
+    vimeoUrl: 'https://vimeo.com/1231903211',
+  },
 
   // -------------------------------------------------------- EDIÇÃO DE VÍDEO
   {
