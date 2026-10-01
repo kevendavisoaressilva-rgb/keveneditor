@@ -14,7 +14,7 @@ export function Footer() {
 
         <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-widest">
           <a
-            href="https://w.app/keveneditor"
+            href="https://api.whatsapp.com/send?phone=5599981705754"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground transition-colors hover:text-accent"

@@ -105,7 +105,7 @@ export function Nav() {
             <div className="flex items-end justify-between font-mono text-[10px] uppercase tracking-widest text-soft">
               <div className="flex flex-col gap-1.5">
                 <a
-                  href="https://w.app/keveneditor"
+                  href="https://api.whatsapp.com/send?phone=5599981705754"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground"

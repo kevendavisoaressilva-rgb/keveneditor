@@ -130,7 +130,7 @@ export function Hero({ active }: { active: boolean }) {
               </span>
             </a>
             <a
-              href="https://w.app/keveneditor"
+              href="https://api.whatsapp.com/send?phone=5599981705754"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 border border-border px-6 py-3.5 font-mono text-[11px] uppercase tracking-widest text-foreground transition-colors hover:border-foreground/50"

@@ -28,7 +28,7 @@ export function Contact() {
           className="mt-14 flex flex-col items-center gap-6"
         >
           <a
-            href="https://w.app/keveneditor"
+            href="https://api.whatsapp.com/send?phone=5599981705754"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative text-2xl font-bold uppercase tracking-[-0.03em] text-foreground md:text-4xl"
