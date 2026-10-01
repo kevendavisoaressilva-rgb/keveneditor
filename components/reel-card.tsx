@@ -18,7 +18,7 @@ export function ReelCard({
       >
         {/* top row */}
         <span className="absolute inset-x-0 top-0 flex items-center justify-between p-4 font-mono text-[9px] uppercase tracking-widest text-soft">
-          <span>IG / REEL</span>
+          <span>{work.vimeoId ? 'VIMEO / 9:16' : 'IG / REEL'}</span>
           <span>{work.year}</span>
         </span>
 

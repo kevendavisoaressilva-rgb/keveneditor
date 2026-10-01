@@ -46,10 +46,14 @@ export function ReelModal({
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
-              src={`https://www.instagram.com/reel/${work.reelCode}/embed`}
-              title={`${work.title} — Instagram`}
+              src={
+                work.vimeoId
+                  ? `https://player.vimeo.com/video/${work.vimeoId}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`
+                  : `https://www.instagram.com/reel/${work.reelCode}/embed`
+              }
+              title={`${work.title} — vídeo`}
               className="h-full w-full border-0"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture; web-share"
               allowFullScreen
             />
           </motion.figure>

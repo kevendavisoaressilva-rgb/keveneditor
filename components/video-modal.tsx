@@ -41,7 +41,12 @@ export function VideoModal({
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.98, y: 10 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-video w-[min(92vw,1200px)] overflow-hidden border border-border bg-paper"
+            className={
+              work.vertical
+                ? 'relative h-[85vh] max-h-[900px] w-auto max-w-[92vw] overflow-hidden border border-border bg-paper'
+                : 'relative aspect-video w-[min(92vw,1200px)] overflow-hidden border border-border bg-paper'
+            }
+            style={work.vertical ? { aspectRatio: '9 / 16' } : undefined}
             onClick={(e) => e.stopPropagation()}
           >
             <iframe

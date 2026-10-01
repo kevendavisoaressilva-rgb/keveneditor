@@ -9,7 +9,7 @@ export function Footer() {
         <p className="font-mono text-[10px] uppercase tracking-widest text-soft">
           © 2026 — TIMON, MARANHÃO, BRASIL
           <span className="mx-3 text-accent">·</span>
-          FEITO EM 24 FRAMES POR SEGUNDO
+          FEITO EM 24FPS, COM CAFÉ, ENTRE UM CORTE E OUTRO
         </p>
 
         <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-widest">

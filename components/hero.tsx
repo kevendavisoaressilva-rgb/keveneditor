@@ -83,7 +83,7 @@ export function Hero({ active }: { active: boolean }) {
           transition={{ delay: 0.15, duration: 0.6 }}
           className="flex items-center justify-between"
         >
-          <p className="eyebrow">PORTFÓLIO © 2026</p>
+          <p className="eyebrow">OI! — PORTFÓLIO © 2026</p>
           <p className="eyebrow hidden md:block">TIMON — MA, BRASIL</p>
           <p className="font-mono text-[11px] uppercase tracking-widest text-soft tabular-nums">
             <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
@@ -109,8 +109,9 @@ export function Hero({ active }: { active: boolean }) {
             className="mt-6 max-w-[58ch] text-lg leading-relaxed text-soft md:mt-8 md:text-2xl"
           >
             Motion designer, <span className="serif-i text-foreground">editor de vídeo</span>{' '}
-            e fotógrafo — construo narrativas com{' '}
-            <span className="serif-i text-foreground">ritmo, movimento e luz</span>.
+            e fotógrafo — apaixonado por criar narrativas com{' '}
+            <span className="serif-i text-foreground">ritmo, movimento e luz</span> (e
+            uma boa dose de experimentação).
           </motion.p>
 
           <motion.div
@@ -149,9 +150,12 @@ export function Hero({ active }: { active: boolean }) {
         aria-hidden
       >
         {/* ruler */}
-        <div className="container-site relative">
+        <div className="container-site relative flex items-end justify-between">
           <div className="ruler h-4 w-full" />
           <div className="ruler-minor absolute inset-x-10 top-0 h-2" />
+          <span className="absolute right-10 -top-5 font-mono text-[9px] uppercase tracking-widest text-soft/70">
+            ROLA PRA BAIXO ↓
+          </span>
         </div>
 
         {/* playhead */}

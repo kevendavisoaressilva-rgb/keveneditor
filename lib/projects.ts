@@ -11,6 +11,7 @@ export type Work = {
   year: string
   accent: Accent
   featured?: boolean
+  vertical?: boolean
   vimeoId?: string
   vimeoUrl?: string
   reelCode?: string
@@ -92,6 +93,69 @@ export const WORKS: Work[] = [
     vimeoId: '1212798871',
     vimeoUrl: 'https://vimeo.com/1212798871',
   },
+  {
+    id: 'shopping-da-praca',
+    index: '07',
+    title: 'SHOPPING DA PRAÇA',
+    subtitle: 'ANIMAÇÃO DE LOGO',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / 3D',
+    year: '2026',
+    accent: 'red',
+    vimeoId: '1231894300',
+    vimeoUrl: 'https://vimeo.com/1231894300',
+  },
+  {
+    id: 'guef',
+    index: '08',
+    title: 'GUEF',
+    subtitle: 'MOTION INSTITUCIONAL — V2',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / 3D',
+    year: '2026',
+    accent: 'blue',
+    vimeoId: '1231894302',
+    vimeoUrl: 'https://vimeo.com/1231894302',
+  },
+  {
+    id: 'bearstore',
+    index: '09',
+    title: 'BEARSTORE',
+    subtitle: 'MÊS DO CLIENTE — CAMPANHA',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / CAMPANHA',
+    year: '2026',
+    accent: 'green',
+    vertical: true,
+    vimeoId: '1231894301',
+    vimeoUrl: 'https://vimeo.com/1231894301',
+  },
+  {
+    id: 'oggi-sorvetes',
+    index: '10',
+    title: 'OGGI SORVETES',
+    subtitle: 'COMERCIAL — 9:16',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / CAMPANHA',
+    year: '2026',
+    accent: 'red',
+    vertical: true,
+    vimeoId: '1231899846',
+    vimeoUrl: 'https://vimeo.com/1231899846',
+  },
+  {
+    id: 'estudo-glass',
+    index: '11',
+    title: 'ESTUDO GLASSMORPHISM',
+    subtitle: 'ELEMENT 3D — 9:16',
+    discipline: 'motion',
+    category: 'MOTION DESIGN / ESTUDO',
+    year: '2026',
+    accent: 'blue',
+    vertical: true,
+    vimeoId: '1231899848',
+    vimeoUrl: 'https://vimeo.com/1231899848',
+  },
 
   // -------------------------------------------------------- EDIÇÃO DE VÍDEO
   {
@@ -126,6 +190,18 @@ export const WORKS: Work[] = [
     year: '2026',
     accent: 'blue',
     reelCode: 'DdzdS5GyB-C',
+  },
+  {
+    id: 'rec-05',
+    index: 'R4',
+    title: 'MARIO — TESTE',
+    subtitle: 'TESTE DE ANIMAÇÃO / 9:16',
+    discipline: 'edicao',
+    category: 'EDIÇÃO / VÍDEO',
+    year: '2026',
+    accent: 'green',
+    vimeoId: '1231893625',
+    vimeoUrl: 'https://vimeo.com/1231893625',
   },
 ]
 

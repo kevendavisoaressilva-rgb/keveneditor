@@ -34,6 +34,9 @@ export function ProjectCard({
       {/* legibility gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/15 to-transparent" />
 
+      {/* accent bar on hover */}
+      <span className="absolute left-0 top-0 h-[3px] w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full" />
+
       {/* top meta */}
       <span className="absolute left-4 top-4 font-mono text-[11px] tracking-widest text-accent">
         {project.index}
