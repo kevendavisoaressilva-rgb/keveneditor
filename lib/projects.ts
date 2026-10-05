@@ -193,6 +193,7 @@ export const WORKS: Work[] = [
     year: '2026',
     accent: 'red',
     reelCode: 'Ddy3fRqRb0y',
+    thumbnail: '/media/rec-01.jpg',
   },
   {
     id: 'rec-02',
@@ -204,6 +205,7 @@ export const WORKS: Work[] = [
     year: '2026',
     accent: 'green',
     reelCode: 'DdzNR6XJLKM',
+    thumbnail: '/media/rec-02.jpg',
   },
   {
     id: 'rec-03',
@@ -215,6 +217,7 @@ export const WORKS: Work[] = [
     year: '2026',
     accent: 'blue',
     reelCode: 'DdzdS5GyB-C',
+    thumbnail: '/media/rec-03.jpg',
   },
   {
     id: 'rec-05',
@@ -338,7 +341,7 @@ export const PHOTOS: Photo[] = [
 export async function getWorksWithThumbnails(): Promise<Work[]> {
   return Promise.all(
     WORKS.map(async (p) => {
-      if (!p.vimeoUrl) return { ...p, thumbnail: null }
+      if (!p.vimeoUrl) return { ...p, thumbnail: p.thumbnail ?? null }
       try {
         const res = await fetch(
           `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(
@@ -346,14 +349,14 @@ export async function getWorksWithThumbnails(): Promise<Work[]> {
           )}&width=1280`,
           { next: { revalidate: 86400 } },
         )
-        if (!res.ok) return { ...p, thumbnail: null }
+        if (!res.ok) return { ...p, thumbnail: p.thumbnail ?? null }
         const data = (await res.json()) as { thumbnail_url?: string }
         let thumb = data.thumbnail_url ?? null
         // upgrade to a larger crop when Vimeo returns a size-suffixed url
         if (thumb) thumb = thumb.replace(/-d_\d+x\d+/, '-d_1280x720')
-        return { ...p, thumbnail: thumb }
+        return { ...p, thumbnail: thumb ?? p.thumbnail ?? null }
       } catch {
-        return { ...p, thumbnail: null }
+        return { ...p, thumbnail: p.thumbnail ?? null }
       }
     }),
   )
