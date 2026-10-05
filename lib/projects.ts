@@ -243,8 +243,8 @@ export const WORKS: Work[] = [
   {
     id: 'rec-07',
     index: 'R6',
-    title: 'RELVA',
-    subtitle: 'CAPTAÇÃO / NOTURNA',
+    title: 'IEL TV',
+    subtitle: 'ANÚNCIO — TEXAS, EUA',
     discipline: 'edicao',
     category: 'EDIÇÃO / VÍDEO',
     year: '2026',
