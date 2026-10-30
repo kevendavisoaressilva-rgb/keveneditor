@@ -41,21 +41,35 @@ export function ReelModal({
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.97, y: 10 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[85vh] max-h-[900px] w-auto max-w-[92vw] overflow-hidden border border-border bg-paper"
-            style={{ aspectRatio: '9 / 16' }}
+            className={
+              work.localVideo
+                ? 'relative aspect-video w-[min(92vw,1200px)] overflow-hidden border border-border bg-paper'
+                : 'relative h-[85vh] max-h-[900px] w-auto max-w-[92vw] overflow-hidden border border-border bg-paper'
+            }
+            style={work.localVideo ? undefined : { aspectRatio: '9 / 16' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <iframe
-              src={
-                work.vimeoId
-                  ? `https://player.vimeo.com/video/${work.vimeoId}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`
-                  : `https://www.instagram.com/reel/${work.reelCode}/embed`
-              }
-              title={`${work.title} — vídeo`}
-              className="h-full w-full border-0"
-              allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            {work.localVideo ? (
+              <video
+                src={work.localVideo}
+                autoPlay
+                controls
+                playsInline
+                className="h-full w-full bg-black"
+              />
+            ) : (
+              <iframe
+                src={
+                  work.vimeoId
+                    ? `https://player.vimeo.com/video/${work.vimeoId}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`
+                    : `https://www.instagram.com/reel/${work.reelCode}/embed`
+                }
+                title={`${work.title} — vídeo`}
+                className="h-full w-full border-0"
+                allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            )}
           </motion.figure>
 
           <figcaption className="pointer-events-none absolute bottom-6 left-1/2 w-full -translate-x-1/2 text-center">

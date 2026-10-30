@@ -16,6 +16,7 @@ export type Work = {
   vimeoUrl?: string
   reelCode?: string
   thumbnail?: string | null
+  localVideo?: string  // arquivo hospedado no próprio site (bypassa bloqueios do IG/Vimeo)
 }
 
 export const WORKS: Work[] = [
@@ -183,45 +184,22 @@ export const WORKS: Work[] = [
   },
 
   // -------------------------------------------------------- EDIÇÃO DE VÍDEO
-  {
+        {
     id: 'rec-01',
     index: 'R1',
-    title: 'REC_001',
-    subtitle: 'GRAVAÇÃO / CORTES',
+    title: 'NOVIDADES',
+    subtitle: 'PROMO — SHOPPING / LOJAS',
     discipline: 'edicao',
     category: 'EDIÇÃO / VÍDEO',
     year: '2026',
     accent: 'red',
-    reelCode: 'Ddy3fRqRb0y',
-    thumbnail: '/media/rec-01.jpg',
-  },
-  {
-    id: 'rec-02',
-    index: 'R2',
-    title: 'REC_002',
-    subtitle: 'GRAVAÇÃO / CORTES',
-    discipline: 'edicao',
-    category: 'EDIÇÃO / VÍDEO',
-    year: '2026',
-    accent: 'green',
-    reelCode: 'DdzNR6XJLKM',
-    thumbnail: '/media/rec-02.jpg',
-  },
-  {
-    id: 'rec-03',
-    index: 'R3',
-    title: 'REC_003',
-    subtitle: 'GRAVAÇÃO / CORTES',
-    discipline: 'edicao',
-    category: 'EDIÇÃO / VÍDEO',
-    year: '2026',
-    accent: 'blue',
-    reelCode: 'DdzdS5GyB-C',
-    thumbnail: '/media/rec-03.jpg',
+    reelCode: 'DewaO9sPn3J',
+    thumbnail: '/media/rec-04.jpg',
+    localVideo: '/media/rec-04.mp4',
   },
   {
     id: 'rec-05',
-    index: 'R4',
+    index: 'R2',
     title: 'MARIO — TESTE',
     subtitle: 'TESTE DE ANIMAÇÃO / 9:16',
     discipline: 'edicao',
@@ -233,7 +211,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-06',
-    index: 'R5',
+    index: 'R3',
     title: 'CHROMA KEY',
     subtitle: 'COMPOSIÇÃO / BASTIDORES',
     discipline: 'edicao',
@@ -245,7 +223,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-07',
-    index: 'R6',
+    index: 'R4',
     title: 'IEL TV',
     subtitle: 'ANÚNCIO — TEXAS, EUA',
     discipline: 'edicao',
@@ -257,7 +235,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-08',
-    index: 'R7',
+    index: 'R5',
     title: 'BASTIDORES',
     subtitle: 'EDIÇÃO / SETUP',
     discipline: 'edicao',
