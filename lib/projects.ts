@@ -184,9 +184,21 @@ export const WORKS: Work[] = [
   },
 
   // -------------------------------------------------------- EDIÇÃO DE VÍDEO
-        {
-    id: 'rec-01',
+  {
+    id: 'rec-09',
     index: 'R1',
+    title: 'FORTLINE',
+    subtitle: 'FILME PUBLICITÁRIO',
+    discipline: 'edicao',
+    category: 'EDIÇÃO / VÍDEO',
+    year: '2026',
+    accent: 'red',
+    vimeoId: '1239628658',
+    vimeoUrl: 'https://vimeo.com/1239628658',
+  },
+  {
+    id: 'rec-01',
+    index: 'R2',
     title: 'NOVIDADES',
     subtitle: 'PROMO — SHOPPING / LOJAS',
     discipline: 'edicao',
@@ -199,7 +211,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-05',
-    index: 'R2',
+    index: 'R3',
     title: 'MARIO — TESTE',
     subtitle: 'TESTE DE ANIMAÇÃO / 9:16',
     discipline: 'edicao',
@@ -211,7 +223,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-06',
-    index: 'R3',
+    index: 'R4',
     title: 'CHROMA KEY',
     subtitle: 'COMPOSIÇÃO / BASTIDORES',
     discipline: 'edicao',
@@ -223,7 +235,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-07',
-    index: 'R4',
+    index: 'R5',
     title: 'IEL TV',
     subtitle: 'ANÚNCIO — TEXAS, EUA',
     discipline: 'edicao',
@@ -235,7 +247,7 @@ export const WORKS: Work[] = [
   },
   {
     id: 'rec-08',
-    index: 'R5',
+    index: 'R6',
     title: 'BASTIDORES',
     subtitle: 'EDIÇÃO / SETUP',
     discipline: 'edicao',
@@ -244,18 +256,6 @@ export const WORKS: Work[] = [
     accent: 'green',
     vimeoId: '1233106935',
     vimeoUrl: 'https://vimeo.com/1233106935',
-  },
-  {
-    id: 'rec-09',
-    index: 'R6',
-    title: 'FORTLINE',
-    subtitle: 'FILME PUBLICITÁRIO',
-    discipline: 'edicao',
-    category: 'EDIÇÃO / VÍDEO',
-    year: '2026',
-    accent: 'red',
-    vimeoId: '1239628658',
-    vimeoUrl: 'https://vimeo.com/1239628658',
   },
 ]
 
