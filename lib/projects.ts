@@ -245,6 +245,18 @@ export const WORKS: Work[] = [
     vimeoId: '1233106935',
     vimeoUrl: 'https://vimeo.com/1233106935',
   },
+  {
+    id: 'rec-09',
+    index: 'R6',
+    title: 'FORTLINE',
+    subtitle: 'FILME PUBLICITÁRIO',
+    discipline: 'edicao',
+    category: 'EDIÇÃO / VÍDEO',
+    year: '2026',
+    accent: 'red',
+    vimeoId: '1239628658',
+    vimeoUrl: 'https://vimeo.com/1239628658',
+  },
 ]
 
 export type Photo = {
